@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosAPI", "PosAPI\PosAPI.csproj", "{717B40A3-85FC-4C4B-B4BA-60D4FEC71B1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosAPI.DAL", "PosAPI.DAL\PosAPI.DAL.csproj", "{6218AD0C-4CAB-4F57-9816-F58B6D3CAED9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosAPI.BLL", "PosAPI.BLL\PosAPI.BLL.csproj", "{400C4E41-7EB9-447F-8079-83C8B0EDF6AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{717B40A3-85FC-4C4B-B4BA-60D4FEC71B1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{717B40A3-85FC-4C4B-B4BA-60D4FEC71B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{717B40A3-85FC-4C4B-B4BA-60D4FEC71B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{717B40A3-85FC-4C4B-B4BA-60D4FEC71B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6218AD0C-4CAB-4F57-9816-F58B6D3CAED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6218AD0C-4CAB-4F57-9816-F58B6D3CAED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6218AD0C-4CAB-4F57-9816-F58B6D3CAED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6218AD0C-4CAB-4F57-9816-F58B6D3CAED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{400C4E41-7EB9-447F-8079-83C8B0EDF6AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{400C4E41-7EB9-447F-8079-83C8B0EDF6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{400C4E41-7EB9-447F-8079-83C8B0EDF6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{400C4E41-7EB9-447F-8079-83C8B0EDF6AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16167D5C-4495-43F6-87EC-C783011E50EF}
+	EndGlobalSection
+EndGlobal
