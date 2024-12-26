@@ -1,6 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using PosAPI.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<PosDbContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PosDB"))
+           .UseLazyLoadingProxies()
+);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
