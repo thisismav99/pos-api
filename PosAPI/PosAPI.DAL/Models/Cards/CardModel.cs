@@ -1,4 +1,4 @@
-﻿namespace PosAPI.DAL.Models.Payment
+﻿namespace PosAPI.DAL.Models.Cards
 {
     public class CardModel : BaseModel
     {

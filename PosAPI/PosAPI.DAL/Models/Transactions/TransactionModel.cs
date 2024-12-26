@@ -1,6 +1,6 @@
-﻿using PosAPI.DAL.Models.CompanyOne;
+﻿using PosAPI.DAL.Models.Cards;
 
-namespace PosAPI.DAL.Models.Payment
+namespace PosAPI.DAL.Models.Transactions
 {
     public class TransactionModel : BaseModel
     {
@@ -12,10 +12,6 @@ namespace PosAPI.DAL.Models.Payment
 
         public Guid CardId { get; set; }
 
-        public Guid ProductId { get; set; }
-
         public virtual CardModel? CardModel { get; set; }
-
-        public virtual required ProductModel ProductModel { get; set; }
     }
 }

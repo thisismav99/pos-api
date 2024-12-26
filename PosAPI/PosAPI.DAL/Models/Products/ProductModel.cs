@@ -1,4 +1,4 @@
-﻿namespace PosAPI.DAL.Models.CompanyOne
+﻿namespace PosAPI.DAL.Models.Products
 {
     public class ProductModel : BaseModel
     {
