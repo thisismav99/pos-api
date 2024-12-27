@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PosAPI.DAL;
 using PosAPI.DAL.Repositories;
+using PosAPI.DAL.UnitOfWorks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,9 @@ builder.Services.AddSwaggerGen();
 
 // Add Repositories
 builder.Services.AddScoped(typeof(IPosRepository<>), typeof(PosRepository<,>));
+
+// Add Unit of Works
+builder.Services.AddScoped(typeof(IUnitOfWorks<>), typeof(UnitOfWorks<,>));
 
 var app = builder.Build();
 

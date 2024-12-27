@@ -21,15 +21,15 @@ namespace PosAPI.DAL.Repositories
         #region Methods
         public async Task Add(T entity)
         {
-            await _context.Set<T>()
-                          .AddAsync(entity);
+            await _context.Set<T>().AddAsync(entity);
         }
 
-        public async Task Delete(T entity)
+        public async Task Delete(Guid id)
         {
-            await _context.Set<T>()
-                          .Where(x => x == entity)
-                          .ExecuteDeleteAsync();
+            var entity = await Get(id);
+
+            if (entity is not null) 
+                _context.Set<T>().Remove(entity);
         }
 
         public async Task<T?> Get(Guid id)
@@ -42,12 +42,9 @@ namespace PosAPI.DAL.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task Update(T entity)
+        public void Update(T entity)
         {
-            await _context.Set<T>()
-                          .Where(x => x == entity)
-                          .ExecuteUpdateAsync(s => 
-                            s.SetProperty(e => e, entity));
+            _context.Set<T>().Entry(entity).State = EntityState.Modified;
         }
         #endregion
     }
