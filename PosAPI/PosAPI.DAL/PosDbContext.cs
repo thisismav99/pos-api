@@ -5,10 +5,10 @@ using PosAPI.DAL.ModelMappings.Transactions;
 
 namespace PosAPI.DAL
 {
-    public class PosDbContext : DbContext
+    public class PosDbContext : BaseDbContext<PosDbContext>
     {
         #region Constructor
-        public PosDbContext(DbContextOptions<PosDbContext> options) : base(options)
+        public PosDbContext(DbContextOptions<BaseDbContext<PosDbContext>> options) : base(options)
         {
             
         }
