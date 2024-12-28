@@ -1,8 +1,10 @@
-﻿namespace PosAPI.DAL.Repositories
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace PosAPI.DAL.Repositories
 {
     public interface IRepository<T, TContext> 
         where T : class
-        where TContext : class
+        where TContext : DbContext
     {
         Task Add(T entity);
         void Update(T entity);

@@ -1,7 +1,9 @@
-﻿namespace PosAPI.DAL.UnitOfWorks
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace PosAPI.DAL.UnitOfWorks
 {
     public interface IUnitOfWork<TContext>
-        where TContext : class
+        where TContext : DbContext
     {
         Task BeginTransaction();
         Task CommitTransaction();
