@@ -7,11 +7,11 @@ namespace PosAPI.DAL.Repositories
         where TContext : DbContext
     {
         #region Variables
-        private readonly BaseDbContext<TContext> _context;
+        private readonly TContext _context;
         #endregion
 
         #region Constructor
-        public Repository(BaseDbContext<TContext> context)
+        public Repository(TContext context)
         {
 
             _context = context;

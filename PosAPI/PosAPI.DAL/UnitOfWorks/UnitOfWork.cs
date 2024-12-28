@@ -7,12 +7,12 @@ namespace PosAPI.DAL.UnitOfWorks
         where TContext : DbContext
     {
         #region Variables
-        private readonly BaseDbContext<TContext> _context;
+        private readonly TContext _context;
         private IDbContextTransaction? _transaction;
         #endregion
 
         #region Constructor
-        public UnitOfWork(BaseDbContext<TContext> context)
+        public UnitOfWork(TContext context)
         {
             _context = context;
         }
