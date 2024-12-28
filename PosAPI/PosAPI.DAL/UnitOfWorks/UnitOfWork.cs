@@ -1,18 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace PosAPI.DAL.UnitOfWorks
 {
-    public class UnitOfWorks<T, TContext> : IUnitOfWorks<T> 
-        where T : class
-        where TContext : BaseDbContext<T>
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext> 
+        where TContext : DbContext
     {
         #region Variables
-        private readonly TContext _context;
+        private readonly BaseDbContext<TContext> _context;
         private IDbContextTransaction? _transaction;
         #endregion
 
         #region Constructor
-        public UnitOfWorks(TContext context)
+        public UnitOfWork(BaseDbContext<TContext> context)
         {
             _context = context;
         }

@@ -1,6 +1,7 @@
 ﻿namespace PosAPI.DAL.UnitOfWorks
 {
-    public interface IUnitOfWorks<T> where T : class
+    public interface IUnitOfWork<TContext>
+        where TContext : class
     {
         Task BeginTransaction();
         Task CommitTransaction();

@@ -1,6 +1,8 @@
 ﻿namespace PosAPI.DAL.Repositories
 {
-    public interface IPosRepository<T> where T : class
+    public interface IRepository<T, TContext> 
+        where T : class
+        where TContext : class
     {
         Task Add(T entity);
         void Update(T entity);

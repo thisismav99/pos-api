@@ -13,7 +13,7 @@ namespace PosAPI.DAL.ModelMappings.Transactions
             builder.Property(x => x.CustomerName).IsRequired().HasMaxLength(30);
             builder.Property(x => x.AmountPaid).IsRequired();
             builder.Property(x => x.PaymentMethod).IsRequired().HasMaxLength(10);
-            builder.Property(x => x.CardId).IsRequired();
+            builder.Property(x => x.CardId);
             builder.Property(x => x.CreatedBy).IsRequired();
             builder.Property(x => x.DateCreated).IsRequired();
             builder.Property(x => x.IsActive).IsRequired();

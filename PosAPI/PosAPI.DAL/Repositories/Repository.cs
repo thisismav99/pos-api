@@ -2,16 +2,16 @@
 
 namespace PosAPI.DAL.Repositories
 {
-    public class PosRepository<T, TContext> : IPosRepository<T> 
+    public class Repository<T, TContext> : IRepository<T, TContext> 
         where T : class
-        where TContext : BaseDbContext<T>
+        where TContext : DbContext
     {
         #region Variables
-        private readonly TContext _context;
+        private readonly BaseDbContext<TContext> _context;
         #endregion
 
         #region Constructor
-        public PosRepository(TContext context)
+        public Repository(BaseDbContext<TContext> context)
         {
 
             _context = context;

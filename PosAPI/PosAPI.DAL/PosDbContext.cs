@@ -8,7 +8,7 @@ namespace PosAPI.DAL
     public class PosDbContext : BaseDbContext<PosDbContext>
     {
         #region Constructor
-        public PosDbContext(DbContextOptions<BaseDbContext<PosDbContext>> options) : base(options)
+        public PosDbContext(DbContextOptions<PosDbContext> options) : base(options)
         {
             
         }

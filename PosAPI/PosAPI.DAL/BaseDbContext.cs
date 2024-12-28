@@ -2,10 +2,11 @@
 
 namespace PosAPI.DAL
 {
-    public class BaseDbContext<T> : DbContext where T : class
+    public class BaseDbContext<TContext> : DbContext 
+        where TContext : DbContext
     {
         #region Constructor
-        public BaseDbContext(DbContextOptions<BaseDbContext<T>> options) : base(options)
+        public BaseDbContext(DbContextOptions<TContext> options) : base(options)
         {
             
         }

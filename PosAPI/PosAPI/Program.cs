@@ -17,10 +17,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add Repositories
-builder.Services.AddScoped(typeof(IPosRepository<>), typeof(PosRepository<,>));
+builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 
 // Add Unit of Works
-builder.Services.AddScoped(typeof(IUnitOfWorks<>), typeof(UnitOfWorks<,>));
+builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
 var app = builder.Build();
 

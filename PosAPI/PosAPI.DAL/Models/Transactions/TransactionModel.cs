@@ -10,7 +10,7 @@ namespace PosAPI.DAL.Models.Transactions
 
         public required string PaymentMethod { get; set; }
 
-        public Guid CardId { get; set; }
+        public Guid? CardId { get; set; }
 
         public virtual CardModel? CardModel { get; set; }
     }
