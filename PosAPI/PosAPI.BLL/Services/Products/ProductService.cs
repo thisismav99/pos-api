@@ -9,15 +9,15 @@ namespace PosAPI.BLL.Services.Products
     public class ProductService : IProductService
     {
         #region Variables
-        private readonly IRepository<ProductModel, PosDbContext> _repository;
+        private readonly IRepository<ProductModel, PosDbContext> _productRepository;
         private readonly IUnitOfWork<PosDbContext> _unitOfWork;
         #endregion
 
         #region Constructor
-        public ProductService(IRepository<ProductModel, PosDbContext> repository,
+        public ProductService(IRepository<ProductModel, PosDbContext> productRepository,
                               IUnitOfWork<PosDbContext> unitOfWork)
         {
-            _repository = repository;
+            _productRepository = productRepository;
             _unitOfWork = unitOfWork;
         }
         #endregion
@@ -30,7 +30,7 @@ namespace PosAPI.BLL.Services.Products
             try
             {
                 await _unitOfWork.BeginTransaction();
-                await _repository.Add(productModel);
+                await _productRepository.Add(productModel);
                 await _unitOfWork.SaveChanges();
                 await _unitOfWork.CommitTransaction();
 
@@ -55,7 +55,7 @@ namespace PosAPI.BLL.Services.Products
             try
             {
                 await _unitOfWork.BeginTransaction();
-                await _repository.Delete(id);
+                await _productRepository.Delete(id);
                 await _unitOfWork.SaveChanges();
                 await _unitOfWork.CommitTransaction();
 
@@ -75,12 +75,12 @@ namespace PosAPI.BLL.Services.Products
 
         public async Task<ProductModel?> GetProduct(Guid id)
         {
-            return await _repository.Get(id);
+            return await _productRepository.Get(id);
         }
 
         public async Task<List<ProductModel>?> GetProducts()
         {
-            return await _repository.GetAll();
+            return await _productRepository.GetAll();
         }
 
         public async Task<Dictionary<bool, string>> UpdateProduct(ProductModel productModel)
@@ -90,7 +90,7 @@ namespace PosAPI.BLL.Services.Products
             try
             {
                 await _unitOfWork.BeginTransaction();
-                _repository.Update(productModel);
+                _productRepository.Update(productModel);
                 await _unitOfWork.SaveChanges();
                 await _unitOfWork.CommitTransaction();
 

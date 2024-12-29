@@ -10,8 +10,9 @@ namespace PosAPI.DAL.ModelMappings.Products
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.TransactionId).IsRequired();
+            builder.Property(x => x.TransactionId);
             builder.Property(x => x.ProductId).IsRequired();
+            builder.Property(x => x.IsSaved).IsRequired();
             builder.Property(x => x.CreatedBy).IsRequired();
             builder.Property(x => x.DateCreated).IsRequired();
             builder.Property(x => x.IsActive).IsRequired();

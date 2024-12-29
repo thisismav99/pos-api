@@ -9,23 +9,61 @@ namespace PosAPI.BLL.Services.Products
     public class ProductTransactionService : IProductTransactionService
     {
         #region Variables
-        private readonly IRepository<ProductTransactionModel, PosDbContext> _repository;
+        private readonly IRepository<ProductTransactionModel, PosDbContext> _productTransactionRepository;
+        private readonly IRepository<ProductModel, PosDbContext> _productRepository;
         private readonly IUnitOfWork<PosDbContext> _unitOfWork;
         #endregion
 
         #region Constructor
-        public ProductTransactionService(IRepository<ProductTransactionModel, PosDbContext> repository,
+        public ProductTransactionService(IRepository<ProductTransactionModel, PosDbContext> productTransactionRepository,
+                                         IRepository<ProductModel, PosDbContext> productRepository,
                                          IUnitOfWork<PosDbContext> unitOfWork)
         {
-            _repository = repository;
+            _productTransactionRepository = productTransactionRepository;
+            _productRepository = productRepository;
             _unitOfWork = unitOfWork;
         }
         #endregion
 
         #region Methods
-        public Task<Dictionary<bool, string>> AddProductTransaction(Guid transactionId, Guid productId)
+        public async Task<Dictionary<bool, string>> AddProductTransactionTemp(Guid productId, string email)
         {
-            throw new NotImplementedException();
+            var result = new Dictionary<bool, string>();
+
+            try
+            {
+                await _unitOfWork.BeginTransaction();
+                var product = await _productRepository.Get(productId);
+
+                if (product is not null)
+                {
+                    var productTransactionTemp = new ProductTransactionModel()
+                    {
+                        TransactionId = null,
+                        ProductId = product.Id,
+                        IsSaved = false,
+                        CreatedBy = email,
+                        DateCreated = DateTime.Now
+                    };
+                    await _productTransactionRepository.Add(productTransactionTemp);
+                    await _unitOfWork.SaveChanges();
+                    await _unitOfWork.CommitTransaction();
+
+                    result.Add(true, "Product Transaction added temporarily");
+
+                    return result;
+                }
+                else
+                    throw new NullReferenceException();
+            }
+            catch(Exception ex) 
+            { 
+                await _unitOfWork.RollbackTransaction(); 
+
+                result.Add(false, ex.Message);
+
+                return result;
+            }
         }
         #endregion
     }

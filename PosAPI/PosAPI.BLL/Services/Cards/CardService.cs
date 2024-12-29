@@ -9,15 +9,15 @@ namespace PosAPI.BLL.Services.Cards
     public class CardService : ICardService
     {
         #region Variables
-        private readonly IRepository<CardModel, PosDbContext> _repository;
+        private readonly IRepository<CardModel, PosDbContext> _cardRepository;
         private readonly IUnitOfWork<PosDbContext> _unitOfWork;
         #endregion
 
         #region Constructor
-        public CardService(IRepository<CardModel, PosDbContext> repository,
+        public CardService(IRepository<CardModel, PosDbContext> cardRepository,
                            IUnitOfWork<PosDbContext> unitOfWork)
         {
-            _repository = repository;
+            _cardRepository = cardRepository;
             _unitOfWork = unitOfWork;
         }
         #endregion
@@ -30,7 +30,7 @@ namespace PosAPI.BLL.Services.Cards
             try
             {
                 await _unitOfWork.BeginTransaction();
-                await _repository.Add(cardModel);
+                await _cardRepository.Add(cardModel);
                 await _unitOfWork.SaveChanges();
                 await _unitOfWork.CommitTransaction();
 
@@ -55,7 +55,7 @@ namespace PosAPI.BLL.Services.Cards
             try
             {
                 await _unitOfWork.BeginTransaction();
-                await _repository.Delete(id);
+                await _cardRepository.Delete(id);
                 await _unitOfWork.SaveChanges();
                 await _unitOfWork.CommitTransaction();
 
@@ -75,12 +75,12 @@ namespace PosAPI.BLL.Services.Cards
 
         public Task<CardModel?> GetCard(Guid id)
         {
-            return _repository.Get(id);
+            return _cardRepository.Get(id);
         }
 
         public Task<List<CardModel>?> GetCards()
         {
-            return _repository.GetAll();
+            return _cardRepository.GetAll();
         }
 
         public async Task<Dictionary<bool, string>> UpdateCard(CardModel cardModel)
@@ -90,7 +90,7 @@ namespace PosAPI.BLL.Services.Cards
             try
             {
                 await _unitOfWork.BeginTransaction();
-                _repository.Update(cardModel);
+                _cardRepository.Update(cardModel);
                 await _unitOfWork.SaveChanges();
                 await _unitOfWork.CommitTransaction();
 

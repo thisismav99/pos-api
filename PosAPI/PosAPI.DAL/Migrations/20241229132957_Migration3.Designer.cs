@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PosAPI.DAL;
 
@@ -11,9 +12,11 @@ using PosAPI.DAL;
 namespace PosAPI.DAL.Migrations
 {
     [DbContext(typeof(PosDbContext))]
-    partial class PosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241229132957_Migration3")]
+    partial class Migration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,7 +127,7 @@ namespace PosAPI.DAL.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("TransactionId")
+                    b.Property<Guid>("TransactionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -186,7 +189,8 @@ namespace PosAPI.DAL.Migrations
                     b.HasOne("PosAPI.DAL.Models.Transactions.TransactionModel", "TransactionModel")
                         .WithMany()
                         .HasForeignKey("TransactionId")
-                        .OnDelete(DeleteBehavior.ClientCascade);
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.Navigation("ProductModel");
 
