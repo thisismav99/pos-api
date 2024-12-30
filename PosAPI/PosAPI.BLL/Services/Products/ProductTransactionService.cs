@@ -26,10 +26,8 @@ namespace PosAPI.BLL.Services.Products
         #endregion
 
         #region Methods
-        public async Task<Dictionary<bool, string>> AddProductTransactionTemp(Guid productId, string email)
+        public async Task<(bool, string, Guid?)> AddProductTransactionTemp(Guid productId, string email)
         {
-            var result = new Dictionary<bool, string>();
-
             try
             {
                 await _unitOfWork.BeginTransaction();
@@ -49,7 +47,7 @@ namespace PosAPI.BLL.Services.Products
                     await _unitOfWork.SaveChanges();
                     await _unitOfWork.CommitTransaction();
 
-                    result.Add(true, "Product Transaction added temporarily");
+                    var result = (true, "Product Transaction added temporarily", productTransactionTemp.Id);
 
                     return result;
                 }
@@ -60,7 +58,7 @@ namespace PosAPI.BLL.Services.Products
             { 
                 await _unitOfWork.RollbackTransaction(); 
 
-                result.Add(false, ex.Message);
+                var result = (false, ex.Message, (Guid?)null);
 
                 return result;
             }

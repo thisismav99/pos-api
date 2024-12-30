@@ -2,6 +2,6 @@
 {
     public interface IProductTransactionService
     {
-        Task<Dictionary<bool, string>> AddProductTransactionTemp(Guid productId, string email);
+        Task<(bool, string, Guid?)> AddProductTransactionTemp(Guid productId, string email);
     }
 }
