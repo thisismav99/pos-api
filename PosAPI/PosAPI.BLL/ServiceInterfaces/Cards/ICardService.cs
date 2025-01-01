@@ -1,8 +1,9 @@
-﻿using PosAPI.DAL.Models.Cards;
+﻿using Microsoft.EntityFrameworkCore;
+using PosAPI.DAL.Models.Cards;
 
 namespace PosAPI.BLL.ServiceInterfaces.Cards
 {
-    public interface ICardService
+    public interface ICardService<TContext> where TContext : DbContext
     {
         Task<Dictionary<bool, string>> AddCard(CardModel cardModel);
         Task<Dictionary<bool, string>> DeleteCard(Guid id);

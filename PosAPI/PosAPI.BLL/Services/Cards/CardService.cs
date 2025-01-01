@@ -1,25 +1,26 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using PosAPI.BLL.Helpers;
 using PosAPI.BLL.ServiceInterfaces.Cards;
-using PosAPI.DAL;
 using PosAPI.DAL.Models.Cards;
 using PosAPI.DAL.Repositories;
 using PosAPI.DAL.UnitOfWorks;
 
 namespace PosAPI.BLL.Services.Cards
 {
-    public class CardService : ICardService
+    public class CardService<TContext> : ICardService<TContext> 
+        where TContext : DbContext
     {
         #region Variables
-        private readonly IRepository<CardModel, PosDbContext> _cardRepository;
-        private readonly IUnitOfWork<PosDbContext> _unitOfWork;
-        private readonly ILogger<CardService> _logger;
+        private readonly IRepository<CardModel, TContext> _cardRepository;
+        private readonly IUnitOfWork<TContext> _unitOfWork;
+        private readonly ILogger<CardService<TContext>> _logger;
         #endregion
 
         #region Constructor
-        public CardService(IRepository<CardModel, PosDbContext> cardRepository,
-                           IUnitOfWork<PosDbContext> unitOfWork,
-                           ILogger<CardService> logger)
+        public CardService(IRepository<CardModel, TContext> cardRepository,
+                           IUnitOfWork<TContext> unitOfWork,
+                           ILogger<CardService<TContext>> logger)
         {
             _cardRepository = cardRepository;
             _unitOfWork = unitOfWork;

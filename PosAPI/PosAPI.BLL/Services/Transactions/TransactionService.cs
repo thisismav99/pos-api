@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using PosAPI.BLL.Helpers;
 using PosAPI.BLL.ServiceInterfaces.Transactions;
-using PosAPI.DAL;
 using PosAPI.DAL.Models.Products;
 using PosAPI.DAL.Models.Transactions;
 using PosAPI.DAL.Repositories;
@@ -9,20 +9,21 @@ using PosAPI.DAL.UnitOfWorks;
 
 namespace PosAPI.BLL.Services.Transactions
 {
-    public class TransactionService : ITransactionService
+    public class TransactionService<TContext> : ITransactionService<TContext>
+        where TContext : DbContext
     {
         #region Variables
-        private readonly IRepository<TransactionModel, PosDbContext> _transactionRepository;
-        private readonly IRepository<ProductTransactionModel, PosDbContext> _productTransactionRepository;
-        private readonly IUnitOfWork<PosDbContext> _unitOfWork;
-        private readonly ILogger<TransactionService> _logger;
+        private readonly IRepository<TransactionModel, TContext> _transactionRepository;
+        private readonly IRepository<ProductTransactionModel, TContext> _productTransactionRepository;
+        private readonly IUnitOfWork<TContext> _unitOfWork;
+        private readonly ILogger<TransactionService<TContext>> _logger;
         #endregion
 
         #region Constructor
-        public TransactionService(IRepository<TransactionModel, PosDbContext> transactionRepository,
-                                  IRepository<ProductTransactionModel, PosDbContext> productTransactionRepository,
-                                  IUnitOfWork<PosDbContext> unitOfWork,
-                                  ILogger<TransactionService> logger)
+        public TransactionService(IRepository<TransactionModel, TContext> transactionRepository,
+                                  IRepository<ProductTransactionModel, TContext> productTransactionRepository,
+                                  IUnitOfWork<TContext> unitOfWork,
+                                  ILogger<TransactionService<TContext>> logger)
         {
             _transactionRepository = transactionRepository;
             _productTransactionRepository = productTransactionRepository;
