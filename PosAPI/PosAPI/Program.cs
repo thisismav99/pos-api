@@ -1,4 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using PosAPI.BLL.ServiceInterfaces.Cards;
+using PosAPI.BLL.ServiceInterfaces.Products;
+using PosAPI.BLL.ServiceInterfaces.Transactions;
+using PosAPI.BLL.Services.Cards;
+using PosAPI.BLL.Services.Products;
+using PosAPI.BLL.Services.Transactions;
 using PosAPI.DAL;
 using PosAPI.DAL.Repositories;
 using PosAPI.DAL.UnitOfWorks;
@@ -27,12 +33,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpContextAccessor();
 
 // Add Repositories
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 
 // Add Unit of Works
 builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+
+// Add Custom Services
+builder.Services.AddScoped(typeof(ICardService<>), typeof(CardService<>));
+builder.Services.AddScoped(typeof(IProductService<>), typeof(ProductService<>));
+builder.Services.AddScoped(typeof(IProductTransactionService<>), typeof(ProductTransactionService<>));
+builder.Services.AddScoped(typeof(ITransactionService<>), typeof(TransactionService<>));
 
 var app = builder.Build();
 
