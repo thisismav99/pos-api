@@ -1,4 +1,4 @@
-﻿namespace PosAPI.Model
+﻿namespace PosAPI.Models
 {
     public class LinkModel
     {

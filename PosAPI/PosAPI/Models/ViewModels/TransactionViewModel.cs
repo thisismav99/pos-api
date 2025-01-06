@@ -1,6 +1,6 @@
 ﻿using PosAPI.DAL.Models.Transactions;
 
-namespace PosAPI.Model.ViewModels
+namespace PosAPI.Models.ViewModels
 {
     public class TransactionViewModel
     {

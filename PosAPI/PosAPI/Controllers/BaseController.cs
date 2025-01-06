@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PosAPI.Model;
+using PosAPI.Models;
 
 namespace PosAPI.Controllers
 {

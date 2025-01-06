@@ -2,8 +2,8 @@
 using PosAPI.BLL.ServiceInterfaces.Cards;
 using PosAPI.DAL;
 using PosAPI.DAL.Models.Cards;
-using PosAPI.Model;
-using PosAPI.Model.ViewModels;
+using PosAPI.Models;
+using PosAPI.Models.ViewModels;
 
 namespace PosAPI.Controllers.Chatime
 {

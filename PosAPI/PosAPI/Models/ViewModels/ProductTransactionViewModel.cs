@@ -1,6 +1,6 @@
 ﻿using PosAPI.DAL.Models.Products;
 
-namespace PosAPI.Model.ViewModels
+namespace PosAPI.Models.ViewModels
 {
     public class ProductTransactionViewModel
     {

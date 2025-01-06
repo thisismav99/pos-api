@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PosAPI.BLL.ServiceInterfaces.Products;
 using PosAPI.DAL;
-using PosAPI.Model.ViewModels;
-using PosAPI.Model;
+using PosAPI.Models.ViewModels;
+using PosAPI.Models;
 
 namespace PosAPI.Controllers.Chatime
 {
