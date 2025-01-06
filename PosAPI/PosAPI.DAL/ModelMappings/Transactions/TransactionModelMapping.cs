@@ -19,6 +19,8 @@ namespace PosAPI.DAL.ModelMappings.Transactions
             builder.Property(x => x.IsActive).IsRequired();
 
             builder.HasOne(x => x.CardModel).WithMany().HasForeignKey(f => f.CardId).OnDelete(DeleteBehavior.ClientCascade);
+
+            builder.ToTable("Transaction");
         }
     }
 }

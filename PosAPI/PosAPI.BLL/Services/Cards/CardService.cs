@@ -37,7 +37,7 @@ namespace PosAPI.BLL.Services.Cards
 
             try
             {
-                _logger.LogDebug(LoggerHelper.LoggerMessage(null, null, 2));
+                _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
                 await _unitOfWork.BeginTransaction();
                 await _cardRepository.Add(cardModel);
@@ -70,7 +70,7 @@ namespace PosAPI.BLL.Services.Cards
 
             try
             {
-                _logger.LogDebug(LoggerHelper.LoggerMessage(null, null, 2));
+                _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
                 await _unitOfWork.BeginTransaction();
                 await _cardRepository.Delete(id);
@@ -113,7 +113,7 @@ namespace PosAPI.BLL.Services.Cards
 
             try
             {
-                _logger.LogDebug(LoggerHelper.LoggerMessage(null, null, 2));
+                _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
                 await _unitOfWork.BeginTransaction();
                 _cardRepository.Update(cardModel);

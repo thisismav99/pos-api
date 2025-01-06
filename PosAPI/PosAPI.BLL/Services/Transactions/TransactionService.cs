@@ -41,7 +41,7 @@ namespace PosAPI.BLL.Services.Transactions
 
             try
             {
-                _logger.LogDebug(LoggerHelper.LoggerMessage(null, null, 2));
+                _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
                 await _unitOfWork.BeginTransaction();
                 await _transactionRepository.Add(transactionModel);

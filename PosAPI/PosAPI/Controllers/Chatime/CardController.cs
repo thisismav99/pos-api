@@ -24,7 +24,7 @@ namespace PosAPI.Controllers.Chatime
 
         #region Methods
         [HttpGet]
-        [Route("card/{id:guid}")]
+        [Route("[controller]/{id:guid}")]
         public async Task<IActionResult> GetCard(Guid id)
         {
             var card = await _cardService.GetCard(id);
@@ -72,7 +72,7 @@ namespace PosAPI.Controllers.Chatime
         }
 
         [HttpPost]
-        [Route("card/add")]
+        [Route("[controller]/add")]
         public async Task<IActionResult> AddCard([FromBody]CardModel cardModel)
         {
             var card = await _cardService.AddCard(cardModel);
@@ -97,7 +97,7 @@ namespace PosAPI.Controllers.Chatime
         }
 
         [HttpPut]
-        [Route("card/update")]
+        [Route("[controller]/update")]
         public async Task<IActionResult> UpdateCard([FromBody]CardModel cardModel)
         {
             var card = await _cardService.UpdateCard(cardModel);
@@ -122,7 +122,7 @@ namespace PosAPI.Controllers.Chatime
         }
 
         [HttpDelete]
-        [Route("card/delete/{id:guid}")]
+        [Route("[controller]/delete/{id:guid}")]
         public async Task<IActionResult> DeleteCard(Guid id)
         {
             var card = await _cardService.DeleteCard(id);

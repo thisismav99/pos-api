@@ -19,6 +19,8 @@ namespace PosAPI.DAL.ModelMappings.Products
 
             builder.HasOne(x => x.TransactionModel).WithMany().HasForeignKey(f => f.TransactionId).OnDelete(DeleteBehavior.ClientCascade);
             builder.HasOne(x => x.ProductModel).WithMany().HasForeignKey(f => f.ProductId).OnDelete(DeleteBehavior.ClientCascade);
+
+            builder.ToTable("ProductTransaction");
         }
     }
 }

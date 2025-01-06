@@ -15,6 +15,8 @@ namespace PosAPI.DAL.ModelMappings.Products
             builder.Property(x => x.CreatedBy).IsRequired();
             builder.Property(x => x.DateCreated).IsRequired();
             builder.Property(x => x.IsActive).IsRequired();
+
+            builder.ToTable("Product");
         }
     }
 }

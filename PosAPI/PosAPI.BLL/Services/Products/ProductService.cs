@@ -37,7 +37,7 @@ namespace PosAPI.BLL.Services.Products
 
             try
             {
-                _logger.LogDebug(LoggerHelper.LoggerMessage(null, null, 2));
+                _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
                 await _unitOfWork.BeginTransaction();
                 await _productRepository.Add(productModel);
@@ -70,7 +70,7 @@ namespace PosAPI.BLL.Services.Products
 
             try
             {
-                _logger.LogDebug(LoggerHelper.LoggerMessage(null, null, 2));
+                _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
                 await _unitOfWork.BeginTransaction();
                 await _productRepository.Delete(id);
@@ -113,7 +113,7 @@ namespace PosAPI.BLL.Services.Products
 
             try
             {
-                _logger.LogDebug(LoggerHelper.LoggerMessage(null, null, 2));
+                _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
                 await _unitOfWork.BeginTransaction();
                 _productRepository.Update(productModel);

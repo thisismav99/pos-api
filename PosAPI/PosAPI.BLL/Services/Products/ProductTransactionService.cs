@@ -38,7 +38,7 @@ namespace PosAPI.BLL.Services.Products
 
             try
             {
-                _logger.LogDebug(LoggerHelper.LoggerMessage(null, null, 2));
+                _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
                 await _unitOfWork.BeginTransaction();
                 var product = await _productRepository.Get(productId);
