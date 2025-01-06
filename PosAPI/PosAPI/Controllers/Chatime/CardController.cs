@@ -83,8 +83,8 @@ namespace PosAPI.Controllers.Chatime
                 LinkModel = new List<LinkModel>()
                     {
                         GenerateLink("ById", "GetCard", "Card", Guid.NewGuid()),
-                        GenerateLink("Self", "GetCards", "Card", null),
-                        GenerateLink("Add", "AddCard", "Card", null),
+                        GenerateLink("List", "GetCards", "Card", null),
+                        GenerateLink("Self", "AddCard", "Card", null),
                         GenerateLink("Update", "UpdateCard", "Card", null),
                         GenerateLink("Delete", "DeleteCard", "Card", Guid.NewGuid())
                     }
@@ -108,9 +108,9 @@ namespace PosAPI.Controllers.Chatime
                 LinkModel = new List<LinkModel>()
                 {
                     GenerateLink("ById", "GetCard", "Card", Guid.NewGuid()),
-                    GenerateLink("Self", "GetCards", "Card", null),
+                    GenerateLink("List", "GetCards", "Card", null),
                     GenerateLink("Add", "AddCard", "Card", null),
-                    GenerateLink("Update", "UpdateCard", "Card", null),
+                    GenerateLink("Self", "UpdateCard", "Card", null),
                     GenerateLink("Delete", "DeleteCard", "Card", Guid.NewGuid())
                 }
             };
@@ -133,10 +133,10 @@ namespace PosAPI.Controllers.Chatime
                 LinkModel = new List<LinkModel>()
                 {
                     GenerateLink("ById", "GetCard", "Card", id),
-                    GenerateLink("Self", "GetCards", "Card", null),
+                    GenerateLink("List", "GetCards", "Card", null),
                     GenerateLink("Add", "AddCard", "Card", null),
                     GenerateLink("Update", "UpdateCard", "Card", null),
-                    GenerateLink("Delete", "DeleteCard", "Card", id)
+                    GenerateLink("Self", "DeleteCard", "Card", id)
                 }
             };
 
