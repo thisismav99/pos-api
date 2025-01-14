@@ -39,13 +39,18 @@ namespace PosAPI.BLL.Services.JwtToken
             {
                 _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
-                var identityUser = new IdentityUser()
-                {
-                    Email = email,
-                    UserName = email
-                };
+                var identityUser = await _userManager.FindByEmailAsync(email);
 
-                var validUser = await _userManager.CheckPasswordAsync(identityUser, password);
+                if(identityUser is null)
+                {
+                    result.Add(false, "Invalid Credentials");
+
+                    _logger.LogWarning(LoggerHelper.LoggerMessage("GenerateJwtToken", "Invalid Credentials", 5));
+
+                    return result;
+                }
+
+                var validUser = await _userManager.CheckPasswordAsync(identityUser!, password);
 
                 if (!validUser)
                 {

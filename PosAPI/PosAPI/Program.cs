@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PosAPI.BLL.ServiceInterfaces.Cards;
+using PosAPI.BLL.ServiceInterfaces.JwtToken;
 using PosAPI.BLL.ServiceInterfaces.Products;
 using PosAPI.BLL.ServiceInterfaces.Transactions;
 using PosAPI.BLL.Services.Cards;
+using PosAPI.BLL.Services.JwtToken;
 using PosAPI.BLL.Services.Products;
 using PosAPI.BLL.Services.Transactions;
 using PosAPI.DAL;
@@ -69,20 +72,27 @@ builder.Services.AddSwaggerGen(options => {
     }); 
 });
 
+// Identity
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<UserDbContext>()
+    .AddDefaultTokenProviders();
+
 // JWT Authentication
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options => { 
-        options.TokenValidationParameters = new TokenValidationParameters 
-        { 
-            ValidateIssuer = true, 
-            ValidateAudience = true, 
-            ValidateLifetime = true, 
-            ValidateIssuerSigningKey = true, 
-            ValidIssuer = builder.Configuration["Jwt:Issuer"], 
-            ValidAudience = builder.Configuration["Jwt:Audience"], 
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)) 
-        }; 
-    }); 
+builder.Services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options => { 
+    options.TokenValidationParameters = new TokenValidationParameters 
+    { 
+        ValidateIssuer = true, 
+        ValidateAudience = true, 
+        ValidateLifetime = true, 
+        ValidateIssuerSigningKey = true, 
+        ValidIssuer = builder.Configuration["Jwt:Issuer"], 
+        ValidAudience = builder.Configuration["Jwt:Audience"], 
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)) 
+    }; 
+  }); 
 
 builder.Services.AddAuthorization();
 #endregion
@@ -100,6 +110,7 @@ builder.Services.AddScoped(typeof(ICardService<>), typeof(CardService<>));
 builder.Services.AddScoped(typeof(IProductService<>), typeof(ProductService<>));
 builder.Services.AddScoped(typeof(IProductTransactionService<>), typeof(ProductTransactionService<>));
 builder.Services.AddScoped(typeof(ITransactionService<>), typeof(TransactionService<>));
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 #endregion
 
 var app = builder.Build();
