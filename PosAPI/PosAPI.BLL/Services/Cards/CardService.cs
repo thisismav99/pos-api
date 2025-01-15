@@ -39,6 +39,15 @@ namespace PosAPI.BLL.Services.Cards
             {
                 _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 2));
 
+                if(cardModel.CardAccountNumber.Length > 15)
+                {
+                    _logger.LogInformation(LoggerHelper.LoggerMessage(null, null, 5));
+
+                    result.Add(false, "Invalid card number");
+
+                    return result;
+                }
+
                 await _unitOfWork.BeginTransaction();
                 await _cardRepository.Add(cardModel);
                 await _unitOfWork.SaveChanges();
