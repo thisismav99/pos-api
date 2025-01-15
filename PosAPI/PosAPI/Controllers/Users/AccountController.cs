@@ -53,7 +53,7 @@ namespace PosAPI.Controllers.Users
         }
 
         [HttpGet]
-        [Route("[controller]/{email:alpha}")]
+        [Route("[controller]/{email}")]
         public async Task<IActionResult> GetAccountByEmail(string email)
         {
             var account = await _userManager.FindByEmailAsync(email);
